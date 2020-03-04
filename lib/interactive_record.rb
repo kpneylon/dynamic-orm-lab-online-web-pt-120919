@@ -7,17 +7,17 @@ class InteractiveRecord
   end
 
   def self.column_names
-    sql = "PRAGMA table_info('#{table_name}')" #give you the hash of info
+    sql = "PRAGMA table_info('#{table_name}')" 
     table_info = DB[:conn].execute(sql)
 
-    table_info.each do |col| #iterate over the array of hashes
-      column_names << col["name"] #this gives you the value for the key "name"
+    table_info.each do |col| 
+      column_names << col["name"] 
     end
-    column_names.compact #to get rid of any nulls
+    column_names.compact 
   end
 
 
-  def initialize(options = {}) #pass in a hash
+  def initialize(options = {}) 
     options.each do |key,value|
       self.send(("#{key}="),value)
     end
